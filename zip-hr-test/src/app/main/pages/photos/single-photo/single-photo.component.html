@@ -1,0 +1,21 @@
+<section>
+
+  <div class="container">
+
+    <div *ngIf="photo">
+      <h2 class="photo-title">
+        {{photo.title}}
+      </h2>
+
+      <a class="photo-album-link" [routerLink]="'/albums/' + photo.albumId">
+        View Album
+      </a>
+
+      <img [src]="photo.url" class="photo-img" alt="photo-img">
+    </div>
+
+    <mat-spinner *ngIf="!photo"></mat-spinner>
+
+
+  </div>
+</section>

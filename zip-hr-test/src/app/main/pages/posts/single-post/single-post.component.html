@@ -1,0 +1,15 @@
+<section class="section">
+  <div class="container" *ngIf="post">
+    <div class="content-container">
+      <h2 class="post-header">
+        {{post.title}}
+      </h2>
+
+      <p class="post-body">
+        {{post.body}}
+      </p>
+    </div>
+
+    <mat-spinner *ngIf="!post"></mat-spinner>
+  </div>
+</section>

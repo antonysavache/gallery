@@ -1,0 +1,31 @@
+<section>
+  <div class="container">
+    <div class="content-wrapper">
+      <mat-form-field appearance="fill">
+        <mat-label>Input filter value</mat-label>
+        <input matInput type="text" [(ngModel)]="sortedValue" (keyup)="applyFilter($event)">
+        <button *ngIf="sortedValue" matSuffix mat-icon-button aria-label="Clear"
+                (click)="sortedValue=''; applyFilter($event)">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <ul class="photos-container-menu" *ngIf="photosList" (scroll)="onScroll()">
+        <li class="photos-element" *ngFor="let photo of renderData">
+          <img [src]="photo.url" width="198px">
+          <div class="photos-element__text-area">
+            <a [routerLink]="'/photos/' + photo.id">
+              {{photo.title |truncateString: 15}}
+            </a>
+            <a [routerLink]="'/albums/' + photo.albumId">
+              View Album
+            </a>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+
+    <mat-spinner *ngIf="!photosList"></mat-spinner>
+  </div>
+</section>

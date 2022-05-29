@@ -1,0 +1,28 @@
+$sizes: ("sm":480px, "md":768px, "lg":1280px);
+
+@mixin media($minmax, $media) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @media only screen and (#{$minmax}-width: $resolution) {
+        @content;
+      }
+    }
+  }
+}
+
+
+.post-header {
+  font-size: 50px;
+  line-height: 1;
+  word-wrap: break-word;
+}
+
+.post-body {
+  font-size: 30px;
+  line-height: 1;
+  word-wrap: break-word;
+}
+
+.content-container {
+  width: 100%;
+}

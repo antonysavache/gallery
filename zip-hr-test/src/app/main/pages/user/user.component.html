@@ -1,0 +1,35 @@
+<section>
+  <div class="container">
+
+    <div *ngIf="user && albums && posts" class="content-wrapper">
+      <div class="user-menu-content__element-box">
+        <h3 class="user-menu-content__element-box__header">Latest Posts</h3>
+        <ul class="user-menu-content__element-box__menu scroll">
+          <li *ngFor="let post of posts" class="user-menu-content__element-box__menu-element post-element">
+            <a class="post__link" [routerLink]="'/posts/' + post.id">
+              {{post.title}}
+            </a>
+            <p class="post__body">
+              {{post.body | truncateString: 110}}
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="user-menu-content__element-box">
+        <h3 class="user-menu-content__element-box__header">Albums</h3>
+        <ul class="user-menu-content__element-box__menu scroll photo-menu">
+          <li *ngFor="let album of albums" class="user-menu-content__element-box__menu-element photo-element">
+            <div class="item">
+              <a [routerLink]="'/albums/' + album.id">{{album.title}}</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <mat-spinner *ngIf="!(user && albums && posts)"></mat-spinner>
+
+  </div>
+
+</section>

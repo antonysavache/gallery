@@ -1,0 +1,64 @@
+@import "src/assets/styles/utils/variables";
+
+$sizes: ("sm":480px, "md":768px, "lg":1280px);
+
+@mixin media($minmax, $media) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @media only screen and (#{$minmax}-width: $resolution) {
+        @content;
+      }
+    }
+  }
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: auto;
+  justify-content: center;
+}
+
+.scroll {
+  overflow: auto;
+  overflow-x: hidden;
+  height: 72vh;
+}
+
+.user-menu-content {
+  &__element-box {
+    flex: 0 0 auto;
+    margin: 6px;
+    width: 100%;
+    background-color: $athens-gray;
+
+   @include media("min", "lg") {
+    max-width: 45%;
+  }
+
+    &__menu-element {
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    &__header {
+      background-color: $porcelain;
+      padding: 15px;
+      font-size: 20px;
+    }
+  }
+}
+
+.post__body {
+  margin-top: 5px;
+}
+
+
+.content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: auto;
+  justify-content: center;
+}

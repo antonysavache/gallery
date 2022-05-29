@@ -1,0 +1,48 @@
+<section>
+  <div class="container">
+
+    <div *ngIf="photosList && albumList">
+      <mat-form-field appearance="fill">
+        <mat-label>Input filter value</mat-label>
+        <input matInput type="text" [(ngModel)]="sortedValue" (keyup)="applyFilter($event)">
+        <button *ngIf="sortedValue" matSuffix mat-icon-button aria-label="Clear"
+                (click)="sortedValue=''; applyFilter($event)">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select filter option</mat-label>
+        <mat-select [(ngModel)]="selectedValue">
+          <mat-option *ngFor="let selectOption of selectOptions" [value]="selectOption">
+            {{selectOption}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <ul class="albums-container-menu" *ngIf="photosList && albumList" (scroll)="onScroll()">
+        <li class="albums-element" *ngFor="let album of renderData">
+          <a class="albums-element__title" [routerLink]="'/albums/' + album.id">
+            {{(album.title | truncateString:57)}}
+          </a>
+
+          <div class="albums-element__photos">
+      <span *ngFor="let photo of photosList.slice(50*(album.id - 1), 50*album.id + 50); let index = index">
+        <img [src]="photo.thumbnailUrl" *ngIf="photo.albumId === album.id && index < 4" alt=""
+             class="albums-element__photos__photo">
+      </span>
+          </div>
+
+          <p class="albums-element__author">
+            By <a [routerLink]="'/user/' + album.userId">{{'User ' + album.userId}}</a>
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <mat-spinner *ngIf="!(photosList && albumList)"></mat-spinner>
+  </div>
+
+</section>
+
+

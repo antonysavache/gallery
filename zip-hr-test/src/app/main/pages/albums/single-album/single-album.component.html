@@ -1,0 +1,24 @@
+<section>
+  <div class="container">
+
+    <div *ngIf="photosList && album">
+      <p>
+        By <a [routerLink]="'/user/' + album.userId">User {{album.userId}}</a>
+      </p>
+      <ul class="album-container-menu">
+        <li class="album-element" *ngFor="let photo of photosList">
+          <img [src]="photo.url" width="200px">
+          <div class="album-element__text-area">
+            <a [routerLink]="'/photos/' + photo.id">
+              {{photo.title | truncateString: 15}}
+            </a>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+
+    <mat-spinner *ngIf="!(photosList && album)"></mat-spinner>
+
+  </div>
+</section>

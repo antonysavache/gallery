@@ -1,0 +1,50 @@
+<div class="header-wrapper">
+
+<mat-icon (click)="toggleMenu()">menu</mat-icon>
+
+  <div class="common-header" *ngIf="!routeElements?.includes('user')">
+    <p>
+      Welcome to
+    </p>
+
+    <h1>
+      My App
+    </h1>
+  </div>
+
+  <div class="user-header" *ngIf="routeElements?.includes('user') && user">
+    <h1>
+      {{user.name}}
+    </h1>
+
+    <p>
+      {{user.username}} — {{user.email}} — {{user.website}} — {{user.company.name}} — {{user.address.city}}
+    </p>
+
+  </div>
+
+  <p *ngIf="!routeElements?.includes('dashboard')">
+    Back to <a [routerLink]="'/dashboard'" class="bread-crumbles">
+    Dashboard/
+  </a>
+
+    <a [routerLink]="'/posts'" *ngIf="routeElements?.includes('posts') && routeElements?.length === 3"
+       class="bread-crumbles">
+      Posts
+    </a>
+
+    <a [routerLink]="'/albums'" *ngIf="routeElements?.includes('albums') && routeElements?.length === 3"
+       class="bread-crumbles">
+      Albums
+    </a>
+
+    <a [routerLink]="'/photos'" *ngIf="routeElements?.includes('photos') && routeElements?.length === 3"
+       class="bread-crumbles">
+      Photos
+    </a>
+  </p>
+
+
+</div>
+
+

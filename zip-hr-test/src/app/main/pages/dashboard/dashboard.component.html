@@ -1,0 +1,54 @@
+<section class="section">
+  <div class="container">
+    <ul class="dashboard-menu-content" *ngIf="albums && posts && photos">
+      <li class="dashboard-menu-content__element">
+        <div class="dashboard-menu-content__element-box">
+          <h3 class="dashboard-menu-content__element-box__header">Statistics</h3>
+          <ul class="dashboard-menu-content__element-box__menu stat-menu">
+            <li class="dashboard-menu-content__element-box__menu-element">
+              <span class="dashboard-menu-content__element-box__menu-element-accent">{{posts?.length}}</span> Posts
+            </li>
+            <li class="dashboard-menu-content__element-box__menu-element">
+              <span class="dashboard-menu-content__element-box__menu-element-accent">{{albums?.length}}</span> Albums
+            </li>
+            <li class="dashboard-menu-content__element-box__menu-element">
+              <span class="dashboard-menu-content__element-box__menu-element-accent">{{photos?.length}}</span> Photos
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="dashboard-menu-content__element">
+        <div class="dashboard-menu-content__element-box">
+          <h3 class="dashboard-menu-content__element-box__header">Latest Posts</h3>
+          <ul class="dashboard-menu-content__element-box__menu scroll">
+            <li *ngFor="let post of posts" class="dashboard-menu-content__element-box__menu-element post-element">
+              <a class="post__link" [routerLink]="'/posts/' + post.id">
+                {{(post.title | truncateString:57)}}
+              </a>
+              <p class="post__body">
+                {{post.body}}
+              </p>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="dashboard-menu-content__element">
+        <div class="dashboard-menu-content__element-box">
+          <h3 class="dashboard-menu-content__element-box__header">Recent Photos</h3>
+          <ul class="dashboard-menu-content__element-box__menu scroll photo-menu" (scroll)="onScroll()">
+            <li *ngFor="let photo of renderPhotosData" class="dashboard-menu-content__element-box__menu-element photo-element">
+              <div class="item">
+                <img [src]="photo.thumbnailUrl">
+                <a [routerLink]="'/photos/' + photo.id">{{photo.title | truncateString: 15}}</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+
+    <mat-spinner *ngIf="!(albums && posts && photos)"></mat-spinner>
+  </div>
+</section>

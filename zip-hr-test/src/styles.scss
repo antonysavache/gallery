@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+@import "src/assets/styles/utils/variables";
+
+$sizes: ("sm":480px, "md":768px, "lg":1280px);
+
+@mixin media($minmax, $media) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @media only screen and (#{$minmax}-width: $resolution) {
+        @content;
+      }
+    }
+  }
+}
+
+html, body {
+  height: 100%;
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin-top: 0;
+    line-height: 1;
+  }
+
+  a {
+    text-decoration: none;
+    color: $cornflower-blue;
+  }
+
+  .list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+
+  ul {
+    list-style-type: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  p {
+    display: block;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    letter-spacing: 3%;
+  }
+
+  .container {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    @include media("min", "sm") {
+      max-width: 480px;
+    }
+
+    @include media("min", "md") {
+      max-width: 920px;
+    }
+
+    @include media("min", "lg") {
+      max-width: 1200px;
+    }
+  }
+
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+

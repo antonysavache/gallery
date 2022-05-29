@@ -1,0 +1,20 @@
+<div class="sidenav-container">
+  <div class="sidenav-container__nav-list-wrapper">
+    <div>
+      <mat-nav-list class="sidenav-container__nav-list">
+        <a
+          routerLink="{{ page?.link }}"
+          mat-list-item
+          *ngFor="let page of pages"
+          class="sidenav-container__nav-list__item "
+        >
+          <mat-icon>{{ page?.icon }}</mat-icon>
+
+          <span> &nbsp; {{ page?.name }}
+          </span>
+        </a>
+      </mat-nav-list>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,19 @@
+<section>
+
+  <div class="container">
+
+    <div *ngIf="postsList" class="mat-table-container">
+      <app-table
+      class="mat-table"
+        [tableData]="postsList"
+        [columns]="tableColumns"
+        [selectOptions]="{constructData: ['userId', 'id', 'title', 'body'], viewData: ['User Id', 'ID', 'Title', 'Content']}"
+        *ngIf="postsList"
+      >
+      </app-table>
+    </div>
+
+    <mat-spinner *ngIf="!postsList"></mat-spinner>
+  </div>
+
+</section>

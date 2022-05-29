@@ -1,0 +1,113 @@
+@import "src/assets/styles/utils/variables";
+
+$sizes: ("sm":480px, "md":768px, "lg":1280px);
+
+@mixin media($minmax, $media) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @media only screen and (#{$minmax}-width: $resolution) {
+        @content;
+      }
+    }
+  }
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
+
+.list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+ul {
+  list-style-type: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+p {
+  display: block;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+  Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: 3%;
+}
+
+a {
+  text-decoration: none;
+  color: $cornflower-blue;
+}
+
+
+.albums-container-menu {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: start;
+  overflow: auto;
+  overflow-x: hidden;
+  height: 70vh;
+}
+
+.albums-element {
+  flex: 0 0 auto;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: $porcelain;
+  font-size: 20px;
+  color: $cornflower-blue;
+
+  max-width: 260px;
+
+  @include media("min", "lg") {
+    max-width: 100%;
+  }
+
+  &__title {
+    padding: 15px;
+  }
+
+  &__author {
+    padding: 15px;
+  }
+
+  &__photos {
+    background-color: $athens-gray;
+
+    &__photo {
+      margin: 15px;
+      width: 100px;
+    }
+  }
+}

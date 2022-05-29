@@ -1,0 +1,43 @@
+@import "src/assets/styles/utils/variables";
+
+$sizes: ("sm":480px, "md":768px, "lg":1280px);
+
+@mixin media($minmax, $media) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @media only screen and (#{$minmax}-width: $resolution) {
+        @content;
+      }
+    }
+  }
+}
+
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.photo-title {
+  font-size: 60px;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.photo-album-link {
+  font-size: 30px;
+}
+
+.photo-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+    @include media("max", "sm") {
+      max-width: 100px;
+    }
+
+    @include media("max", "md") {
+      max-width: 300px;
+    }
+}

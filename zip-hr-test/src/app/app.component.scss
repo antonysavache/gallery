@@ -1,0 +1,20 @@
+$sizes: ("sm":480px, "md":768px, "lg":1280px);
+
+@mixin media($minmax, $media) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @media only screen and (#{$minmax}-width: $resolution) {
+        @content;
+      }
+    }
+  }
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.wrapper {
+  height: 100%;
+}
+

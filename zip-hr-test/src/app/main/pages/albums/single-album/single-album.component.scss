@@ -1,0 +1,39 @@
+@import "src/assets/styles/utils/variables";
+
+$sizes: ("sm":480px, "md":768px, "lg":1280px);
+
+@mixin media($minmax, $media) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @media only screen and (#{$minmax}-width: $resolution) {
+        @content;
+      }
+    }
+  }
+}
+
+
+.album-container-menu {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: start
+}
+
+.album-element {
+  flex: 0 0 auto;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: $porcelain;
+  color: $cornflower-blue;
+
+  &__text-area {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+  }
+}
